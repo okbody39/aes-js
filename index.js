@@ -383,6 +383,7 @@
 
     ModeOfOperationECB.prototype.encrypt = function(plaintext) {
         plaintext = coerceArray(plaintext);
+        plaintext = pkcs7pad(plaintext);
 
         if ((plaintext.length % 16) !== 0) {
             throw new Error('invalid plaintext size (must be multiple of 16 bytes)');
@@ -445,6 +446,7 @@
 
     ModeOfOperationCBC.prototype.encrypt = function(plaintext) {
         plaintext = coerceArray(plaintext);
+        plaintext = pkcs7pad(plaintext);
 
         if ((plaintext.length % 16) !== 0) {
             throw new Error('invalid plaintext size (must be multiple of 16 bytes)');
